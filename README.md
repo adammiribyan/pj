@@ -1,5 +1,3 @@
-# pj
-
 ## Installation
 ```
 cd
@@ -10,7 +8,13 @@ exec bash
 ```
 
 ## Usage
-So far there is only the `prepare` command, which just kills all currently running Solr servers and starts over two servers for Philojotter's test and development databases. I found myself doing this pretty often, so here we save some time running one command instead of three. I know, I'm lazy.
+It's a sunny morning in town, you grab your first cap of coffee, you are about to make some great work on Philojotter. Before you start, run `pj prepare` inside the `philojotter` app directory in the terminal. It will kindly kill all currently running Solr servers and re-run just the ones you're gonna need for your development and test databases.
 
-## Todo
-There are few more things that are planned to be added here, such as pulling the current master branch from the remote repository, migrating the database, executing `bundle install`, etc.
+It will also:
+* pull the master branch from the remote repository;
+* do `bundle install`;
+* migrate the database;
+* and start the development server;
+
+## Contribution
+Think there's something missing? Go ahead and submit a pull request.

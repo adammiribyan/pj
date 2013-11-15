@@ -1,19 +1,25 @@
 #!/usr/bin/env ruby
 # Usage: pj prepare
-# Summary: Run Solr servers for development and test. Restart the Rails application.
 
-# Kill all solr servers.
+# Kill all Solr servers
 system("killall -v java; true")
 
-# Run solr for development and test.
+# Run solr for development and test
 %w(development test).each do |environment|
-  puts "Running Solr servers for test and development databases..."
   system("bundle exec rake RAILS_ENV=#{environment} sunspot:solr:start")
 end
 
-# TODO: Add more commands depending on the passed attributes,
-# like migrating the db, bundle, pulling the current remote master, etc.
-# ...
+# Pull the origin master
+system("git pull origin master")
 
-# Restart Rails application.
+# Bundle
+system("bundle install")
+
+# Migrate the database
+system("bundle exec rake db:migrate")
+
+# Run the development server
+system("bundle exec rails s")
+
+# Restart Rails application
 system("touch tmp/restart.txt")
